@@ -23,11 +23,11 @@
         };
     }
 
-    function mlcCorbaController($scope, $routeParams, Restangular) {
+    function mlcCorbaController($scope, $stateParams, Restangular) {
     }
 
-    function mlcLicenseController($scope, $routeParams, Restangular) {
-        var svr = $routeParams.server;
+    function mlcLicenseController($scope, $stateParams, Restangular) {
+        var svr = $stateParams.server;
         $scope.server = svr;
         $scope.loaded = false;
         Restangular.one('/api/licence/' + svr).get().then(function (license) {
@@ -127,33 +127,47 @@
                 return input;
             };
         })
-        .config(function (RestangularProvider, config, $routeProvider) {
+        .config(function (RestangularProvider, config, $stateProvider, $urlRouterProvider) {
+
+            ///////////////////////////////////////
+            // Setup MLC REST server             //
+            ///////////////////////////////////////
             RestangularProvider.setBaseUrl(config.baseUrl);
             RestangularProvider.setRestangularFields({
                 id: "_id",
                 selfLink: "_href"
             });
 
-            // Configure routes
-            $routeProvider
-                .when('/add', {
+
+            ///////////////////////////////////////
+            // Redirects and Otherwise           //
+            ///////////////////////////////////////
+            $urlRouterProvider.otherwise('/');
+
+
+            ///////////////////////////////////////
+            // State definitions                 //
+            ///////////////////////////////////////
+            $stateProvider
+                .state('home', {
+                    url: '/',
                     templateUrl: 'partials/server-add.html',
                     controller: 'mlcServerController'
                 })
-                .when('/corba/:server', {
-                    templateUrl: 'partials/server-corba.html',
-                    controller: 'mlcCorbaController'
-                })
-                .when('/kpi/:server', {
-                    templateUrl: 'partials/server-kpi.html',
-                    controller: 'mlcKpiController'
-                })
-                .when('/license/:server', {
+                .state('licences', {
+                    url: '/licences/:server',
                     templateUrl: 'partials/server-licenses.html',
                     controller: 'mlcLicenseController'
                 })
-                .otherwise({
-                    redirectTo: '/add'
+                .state('corba', {
+                    url: '/corba/:server',
+                    templateUrl: 'partials/server-corba.html',
+                    controller: 'mlcCorbaController'
+                })
+                .state('stats', {
+                    url: '/stats/:server',
+                    templateUrl: 'partials/server-kpi.html',
+                    controller: 'mlcKpiController'
                 });
         });
 
