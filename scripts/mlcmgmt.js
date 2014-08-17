@@ -113,7 +113,7 @@
 // Modules
 ////////////////////////////////////////////////////////////////////////////////////////////////
     angular.module('mlcMgmtApplication',
-        [ 'restangular', 'ngRoute', 'ui.bootstrap', 'LocalStorageModule', 'configuration' ])
+        [ 'restangular', 'ui.router', 'ui.bootstrap', 'LocalStorageModule', 'configuration' ])
         .service('mlcMgmtService', mlcMgmtService)
         .controller('mlcServerController', mlcServerController)
         .controller('mlcLicenseController', mlcLicenseController)
