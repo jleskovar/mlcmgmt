@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="mlcMgmtApplication">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>== MLC KPI And Management Tool ==</title>
+
+    <!-- CSS -->
+    <link href="bower_components/bootstrap-css-only/css/bootstrap.css" rel="stylesheet">
+    <link href="bower_components/bootstrap-css-only/css/bootstrap-theme.css" rel="stylesheet">
+
+    <!-- Libraries -->
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jqplot/jquery.jqplot.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-chart/src/chart.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-local-storage/angular-local-storage.js"></script>
+    <script src="bower_components/lodash/dist/lodash.js"></script>
+    <script src="bower_components/restangular/dist/restangular.js"></script>
+
+    <!-- Application -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/mlcmgmt.js"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">MLC Management Tool</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#/add">Overview</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container" role="main">
+    <div ng-view></div>
+</div>
+</body>
+</html>

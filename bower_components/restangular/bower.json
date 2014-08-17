@@ -1,0 +1,19 @@
+{
+  "name": "restangular",
+  "version": "1.4.0-issue658",
+  "main": "./dist/restangular.js",
+  "description": "Restful Resources service for AngularJS apps",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jleskovar/restangular.git"
+  },
+  "dependencies": {
+    "lodash": ">=1.3.0 <2.5.0",
+    "angular": "~1.2.x"
+  },
+  "ignore": [
+    "node_modules",
+    "components",
+    "lib"
+  ]
+}

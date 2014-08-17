@@ -1,0 +1,51 @@
+<style>
+.table {
+  table-layout: fixed;
+}
+</style>
+<div class="container">
+ <h3>Add MLC server hostname:</h3>
+ <form ng-submit="addServer()">
+  <input type="text" ng-model="mlcServer" placeholder="add MLC server here" /> <input type="submit" value="add" />
+ </form>
+
+ <hr>
+ <button ng-click="refresh()">Refresh</button>
+ <hr>
+
+ <h3>Servers:</h3>
+ <div class="row">
+  <div class="col-md-3" ng-repeat="mlc in servers | orderBy:'server'">
+   <div ng-class="mlc.nodes.length>0 ? 'panel panel-success' : 'panel panel-danger'">
+
+    <button ng-click="removeServer(mlc.server)" type="button" class="close">&times;</button>
+
+    <div class="panel-heading">
+     <h3 class="panel-title">
+      <a href="#/kpi/{{mlc.server}}">{{mlc.server}}</a>
+     </h3>
+    </div>
+
+
+    <table class="table">
+     <tr ng-repeat="node in mlc.nodes | orderBy:'id'">
+      <td>{{node.puType}}</td>
+      <td>{{node.version | mlcVersion}}</td>
+      <td>{{node.puStatus}}</td>
+     </tr>
+     <tr ng-show="mlc.alarms">
+      <td class="danger">{{mlc.alarms.critical}}</td>
+      <td class="warning">{{mlc.alarms.major}}</td>
+      <td>{{mlc.alarms.minor}}</td>
+     </tr>
+     <tr ng-show="mlc.nodes.length>0" class="panel-footer">
+      <td width="33%"><a href="#/kpi/{{mlc.server}}">KPIs</a></td>
+      <td width="33%"><a href="#/license/{{mlc.server}}">Licenses</a></td>
+      <td width="33%"><a href="#/corba/{{mlc.server}}">Corba</a></td>
+     </tr>
+    </table>
+
+   </div>
+  </div>
+ </div>
+</div>
